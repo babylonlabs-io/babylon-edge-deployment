@@ -51,7 +51,7 @@ rpcallowip=0.0.0.0/0
 EOF
 
 echo "Starting bitcoind..."
-bitcoind -${BITCOIN_NETWORK} -datadir="$BITCOIN_DATA" -conf="$BITCOIN_CONF" -daemon
+bitcoind -${BITCOIN_NETWORK} -datadir="$BITCOIN_DATA" -conf="$BITCOIN_CONF" -deprecatedrpc=warnings -daemon
 # Allow some time for bitcoind to start
 sleep 3
 
