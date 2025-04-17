@@ -1,0 +1,40 @@
+services:
+  consumer-fp:
+    container_name: consumer-fp
+    image: babylonlabs-io/finality-provider
+    command: >
+      sh -c "
+        fpd keys add finality-provider --keyring-backend=test &&
+        fpd start
+      "
+    networks:
+      localnet:
+        ipv4_address: 192.168.10.2
+    volumes:
+      - ../.testnets/consumer-fp:/home/finality-provider/.fpd
+    depends_on:
+      - consumer-eotsmanager
+    restart: unless-stopped
+
+  consumer-eotsmanager:
+    container_name: consumer-eotsmanager
+    image: babylonlabs-io/finality-provider
+    command: >
+      sh -c "
+        eotsd keys add finality-provider --keyring-backend=test --output json | jq -r '.pubkey_hex' > /home/finality-provider/.eotsd/pubkey.hex &&
+        eotsd start
+      "
+    networks:
+      localnet:
+        ipv4_address: 192.168.10.3
+    volumes:
+      - ../.testnets/consumer-eotsmanager:/home/finality-provider/.eotsd
+    restart: unless-stopped
+
+networks:
+  localnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/25
