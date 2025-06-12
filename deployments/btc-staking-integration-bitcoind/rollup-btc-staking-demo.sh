@@ -7,7 +7,7 @@ sleep 10 # wait for containers to be ready (cov emulator takes a while to start)
 BBN_CHAIN_ID="chain-test"
 CONSUMER_ID="consumer-id"
 
-echo "🚀 Starting Enhanced BTC Staking Integration Demo"
+echo "🚀 Starting Rollup Integration Demo"
 echo "=================================================="
 
 # Build the crypto operations tool first
