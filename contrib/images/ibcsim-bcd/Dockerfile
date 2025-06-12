@@ -20,7 +20,7 @@ WORKDIR /work
 
 ENV GO111MODULE on
 ENV RELAYER_TAG v2.5.2
-ENV BABYLON_SDK_TAG v0.8.0-rc.0
+ENV BABYLON_SDK_TAG v0.9.0
 
 # Install the relayer
 RUN git clone https://github.com/cosmos/relayer.git
@@ -57,6 +57,7 @@ WORKDIR /ibcsim-bcd
 COPY wrapper.sh /ibcsim-bcd/wrapper.sh
 COPY setup-bcd.sh /ibcsim-bcd/setup-bcd.sh
 COPY --from=build-env /work/babylon-sdk/tests/testdata/babylon_contract.wasm /ibcsim-bcd/babylon_contract.wasm
+COPY --from=build-env /work/babylon-sdk/tests/testdata/btc_light_client.wasm /ibcsim-bcd/btc_light_client.wasm
 COPY --from=build-env /work/babylon-sdk/tests/testdata/btc_staking.wasm /ibcsim-bcd/btc_staking.wasm
 COPY --from=build-env /work/babylon-sdk/tests/testdata/btc_finality.wasm /ibcsim-bcd/btc_finality.wasm
 
