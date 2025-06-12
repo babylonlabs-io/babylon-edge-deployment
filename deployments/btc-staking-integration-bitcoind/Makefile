@@ -25,9 +25,12 @@ build-covenant-emulator:
 build-covenant-signer:
 	$(MAKE) -C $(GIT_TOPLEVEL)/covenant-emulator/covenant-signer build-docker
 
-build-deployment-btc-staking-integration-bitcoind: build-babylond build-bitcoindsim build-vigilante build-btc-staker build-finality-provider build-covenant-signer build-covenant-emulator build-ibcsim-bcd
+build-tmkms:
+	$(MAKE) -C $(GIT_TOPLEVEL)/contrib/images tmkms
 
-start-deployment-btc-staking-integration-bitcoind: stop-deployment-btc-staking-integration-bitcoind build-deployment-btc-staking-integration-bitcoind
+build-deployment-btc-staking-integration-bitcoind: build-babylond build-bitcoindsim build-vigilante build-btc-staker build-finality-provider build-covenant-signer build-covenant-emulator build-ibcsim-bcd build-tmkms
+
+start-deployment-btc-staking-integration-bitcoind: stop-deployment-btc-staking-integration-bitcoind #build-deployment-btc-staking-integration-bitcoind
 	./pre-deployment.sh
 	$(DOCKER) compose -f artifacts/docker-compose.yml up -d
 	./post-deployment.sh
