@@ -7,3 +7,4 @@ deployments/local/data
 .env
 .env*
 !.env.example
+deployments/btc-staking-integration-bitcoind/crypto-ops
