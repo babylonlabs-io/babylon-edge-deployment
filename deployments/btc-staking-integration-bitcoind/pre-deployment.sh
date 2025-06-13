@@ -41,4 +41,7 @@ cp -R artifacts/covenant-emulator-keyring .testnets/covenant-emulator/keyring-te
 cp artifacts/covenant-signer.toml .testnets/covenant-signer/config.toml
 cp -R artifacts/covenant-signer-keyring .testnets/covenant-signer/keyring-test
 
+# copy contracts
+cp -R artifacts/contracts .testnets/node0/contracts
+
 chmod -R 777 .testnets

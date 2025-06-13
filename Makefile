@@ -10,3 +10,7 @@ start-deployment-btc-staking-integration-bitcoind-demo:
 stop-deployment-btc-staking-integration-bitcoind:
 	@$(MAKE) -C $(CURDIR)/deployments/btc-staking-integration-bitcoind \
 		stop-deployment-btc-staking-integration-bitcoind
+
+run-rollup-integration-demo:
+	@$(MAKE) -C $(CURDIR)/deployments/btc-staking-integration-bitcoind \
+		run-rollup-integration-demo
